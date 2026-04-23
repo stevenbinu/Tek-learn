@@ -7,6 +7,22 @@ import './Home.css';
 const Home = () => {
   const [cursorPos, setCursorPos] = useState({ x: 0, y: 0 });
   const [activeCourse, setActiveCourse] = useState(1); // 0, 1, 2
+  const [activeFaq, setActiveFaq] = useState(null);
+
+  const faqs = [
+    {
+      question: "Do I need prior experience to join?",
+      answer: "Not at all! All our courses are beginner-friendly. We start from the absolute basics and take you to industry-ready level."
+    },
+    {
+      question: "How does the internship program work?",
+      answer: "After completing 60% of your course, you get placed on a live startup project, working as a real team member with real deliverables."
+    },
+    {
+      question: "Will I get a job?",
+      answer: "We have a 95% placement rate. Our dedicated career team helps you with resume building, interview prep, and job referrals."
+    }
+  ];
 
   useEffect(() => {
     const handleMouseMove = (e) => {
@@ -296,15 +312,18 @@ const Home = () => {
         <h2 className="section-title center">Frequently Asked Questions</h2>
         {/* Vertical flex list for FAQ items */}
         <div className="faq-list">
-          <div className="faq-item-box">
-            <h3>Do I need prior experience to join?</h3>
-          </div>
-          <div className="faq-item-box">
-            <h3>How does the internship program work?</h3>
-          </div>
-          <div className="faq-item-box">
-            <h3>Will I get a job?</h3>
-          </div>
+          {faqs.map((faq, index) => (
+            <div 
+              key={index} 
+              className={`faq-item-box ${activeFaq === index ? 'active' : ''}`}
+              onClick={() => setActiveFaq(activeFaq === index ? null : index)}
+            >
+              <h3>{faq.question}</h3>
+              <div className="faq-answer">
+                <p>{faq.answer}</p>
+              </div>
+            </div>
+          ))}
         </div>
       </section>
 
