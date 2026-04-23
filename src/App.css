@@ -1,0 +1,10 @@
+/* Main layout styling if any specific to App container */
+.app-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex-grow: 1;
+}
